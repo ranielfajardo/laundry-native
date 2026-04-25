@@ -1,5 +1,5 @@
 <?php
-$title = 'Paket';
+$title = 'Package';
 include '../templates/header.php';
 
 $id = $_GET['id'];
@@ -20,21 +20,21 @@ if (isset($_POST['update'])) {
 <div class="container-fluid">
     <?php
     if (isset($_SESSION['notUpdated'])) {
-        echo '<div class="alert alert-danger">Data gagal ditambahkan!</div>';
+        echo '<div class="alert alert-danger">Failed to update data!</div>';
         unset($_SESSION['notUpdated']);
     }
     ?>
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Paket</h1>
-        <a class="btn btn-secondary" href="paket.php"><i class="fas fa-arrow-left mr-2"></i>Kembali</a>
+        <h1 class="h3 mb-0 text-gray-800">Package</h1>
+        <a class="btn btn-secondary" href="paket.php"><i class="fas fa-arrow-left mr-2"></i>Back</a>
     </div>
 
-    <!-- DataTales Example -->
+    <!-- DataTables Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Edit Paket</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Edit Package</h6>
         </div>
         <div class="row card-body align-items-center">
             <div class="col-md text-center">
@@ -45,7 +45,7 @@ if (isset($_POST['update'])) {
                     <input type="hidden" name="id" value="<?= $paket['id']; ?>">
                     <div class="form-floating mb-3">
                         <select class="form-select" id="outlet" aria-label="Floating label select example" name="outlet" required>
-                            <option disabled>Pilih outlet</option>
+                            <option disabled>Select outlet</option>
                             <?php foreach ($outlet as $o) : ?>
                                 <option value="<?= $o['id']; ?>" <?= ($paket['id_outlet'] == $o['id']) ? 'selected' : ''; ?>><?= $o['nama']; ?></option>
                             <?php endforeach; ?>
@@ -54,22 +54,22 @@ if (isset($_POST['update'])) {
                     </div>
                     <div class="form-floating mb-3">
                         <select class="form-select" id="jenis" aria-label="Floating label select example" name="jenis" required>
-                            <option disabled>Pilih jenis paket</option>
-                            <option value="kiloan" <?= ($paket['jenis'] == 'kiloan') ? 'selected' : ''; ?>>Kiloan</option>
-                            <option value="selimut" <?= ($paket['jenis'] == 'selimut') ? 'selected' : ''; ?>>Selimut</option>
+                            <option disabled>Select package type</option>
+                            <option value="kiloan" <?= ($paket['jenis'] == 'kiloan') ? 'selected' : ''; ?>>Per Kilo</option>
+                            <option value="selimut" <?= ($paket['jenis'] == 'selimut') ? 'selected' : ''; ?>>Blanket</option>
                             <option value="bed cover" <?= ($paket['jenis'] == 'bed cover') ? 'selected' : ''; ?>>Bed Cover</option>
-                            <option value="kaos" <?= ($paket['jenis'] == 'kaos') ? 'selected' : ''; ?>>Kaos</option>
-                            <option value="lain" <?= ($paket['jenis'] == 'lain') ? 'selected' : ''; ?>>Lainnya</option>
+                            <option value="kaos" <?= ($paket['jenis'] == 'kaos') ? 'selected' : ''; ?>>T-Shirt</option>
+                            <option value="lain" <?= ($paket['jenis'] == 'lain') ? 'selected' : ''; ?>>Others</option>
                         </select>
-                        <label for="jenis">Jenis Paket</label>
+                        <label for="jenis">Package Type</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="nama" placeholder="" name="nama" value="<?= $paket['nama_paket']; ?>" required>
-                        <label for="nama">Nama Paket</label>
+                        <label for="nama">Package Name</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="number" class="form-control" id="harga" placeholder="" name="harga" value="<?= $paket['harga']; ?>" required>
-                        <label for="harga">Harga</label>
+                        <label for="harga">Price</label>
                     </div>
                     <button type="submit" class="btn btn-primary float-right" name="update">Update</button>
                 </form>

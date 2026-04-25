@@ -1,5 +1,5 @@
 <?php
-$title = 'Transaksi';
+$title = 'Transaction';
 include '../templates/header.php';
 
 $id = $_GET['id'];
@@ -19,21 +19,21 @@ if (isset($_POST['update'])) {
 <div class="container-fluid">
     <?php
     if (isset($_SESSION['notUpdated'])) {
-        echo '<div class="alert alert-danger">Data gagal ditambahkan!</div>';
+        echo '<div class="alert alert-danger">Failed to update data!</div>';
         unset($_SESSION['notUpdated']);
     }
     ?>
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Transaksi</h1>
-        <a class="btn btn-secondary" href="transaksi.php"><i class="fas fa-arrow-left mr-2"></i>Kembali</a>
+        <h1 class="h3 mb-0 text-gray-800">Transaction</h1>
+        <a class="btn btn-secondary" href="transaksi.php"><i class="fas fa-arrow-left mr-2"></i>Back</a>
     </div>
 
-    <!-- DataTales Example -->
+    <!-- DataTables Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Proses Transaksi</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Process Transaction</h6>
         </div>
         <div class="row card-body align-items-center">
             <div class="col-md text-center">
@@ -44,21 +44,21 @@ if (isset($_POST['update'])) {
                     <input type="hidden" name="id" value="<?= $transaksi['id']; ?>">
                     <div class="form-floating mb-3">
                         <select class="form-select" id="status" aria-label="Floating label select example" name="status" required>
-                            <option disabled>Pilih status</option>
-                            <option value="baru" <?= ($transaksi['status'] == 'baru') ? 'selected' : ''; ?>>Baru</option>
-                            <option value="proses" <?= ($transaksi['status'] == 'proses') ? 'selected' : ''; ?>>Proses</option>
-                            <option value="selesai" <?= ($transaksi['status'] == 'selesai') ? 'selected' : ''; ?>>Selesai</option>
-                            <option value="diambil" <?= ($transaksi['status'] == 'diambil') ? 'selected' : ''; ?>>Diambil</option>
+                            <option disabled>Select status</option>
+                            <option value="baru" <?= ($transaksi['status'] == 'baru') ? 'selected' : ''; ?>>New</option>
+                            <option value="proses" <?= ($transaksi['status'] == 'proses') ? 'selected' : ''; ?>>In Process</option>
+                            <option value="selesai" <?= ($transaksi['status'] == 'selesai') ? 'selected' : ''; ?>>Completed</option>
+                            <option value="diambil" <?= ($transaksi['status'] == 'diambil') ? 'selected' : ''; ?>>Picked Up</option>
                         </select>
                         <label for="status">Status</label>
                     </div>
                     <div class="form-floating mb-3">
                         <select class="form-select" id="dibayar" aria-label="Floating label select example" name="dibayar" required>
-                            <option disabled>Pilih status pembayaran</option>
-                            <option value="belum dibayar" <?= ($transaksi['dibayar'] == 'belum dibayar') ? 'selected' : ''; ?>>Belum Dibayar</option>
-                            <option value="dibayar" <?= ($transaksi['dibayar'] == 'dibayar') ? 'selected' : ''; ?>>Dibayar</option>
+                            <option disabled>Select payment status</option>
+                            <option value="belum dibayar" <?= ($transaksi['dibayar'] == 'belum dibayar') ? 'selected' : ''; ?>>Unpaid</option>
+                            <option value="dibayar" <?= ($transaksi['dibayar'] == 'dibayar') ? 'selected' : ''; ?>>Paid</option>
                         </select>
-                        <label for="dibayar">Status Pembayaran</label>
+                        <label for="dibayar">Payment Status</label>
                     </div>
                     <button type="submit" class="btn btn-primary float-right" name="update">Update</button>
                 </form>

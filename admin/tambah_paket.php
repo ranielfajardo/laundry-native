@@ -1,5 +1,5 @@
 <?php
-$title = 'Paket';
+$title = 'Package';
 include '../templates/header.php';
 
 $outlet = query("SELECT id, nama FROM tb_outlet");
@@ -18,21 +18,21 @@ if (isset($_POST['simpan'])) {
 <div class="container-fluid">
     <?php
     if (isset($_SESSION['notInserted'])) {
-        echo '<div class="alert alert-danger">Data gagal ditambahkan!</div>';
+        echo '<div class="alert alert-danger">Failed to add data!</div>';
         unset($_SESSION['notInserted']);
     }
     ?>
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Paket</h1>
-        <a class="btn btn-secondary" href="paket.php"><i class="fas fa-arrow-left mr-2"></i>Kembali</a>
+        <h1 class="h3 mb-0 text-gray-800">Package</h1>
+        <a class="btn btn-secondary" href="paket.php"><i class="fas fa-arrow-left mr-2"></i>Back</a>
     </div>
 
-    <!-- DataTales Example -->
+    <!-- DataTables Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Tambah Paket</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Add Package</h6>
         </div>
         <div class="row card-body align-items-center">
             <div class="col-md text-center">
@@ -42,7 +42,7 @@ if (isset($_POST['simpan'])) {
                 <form action="" method="post">
                     <div class="form-floating mb-3">
                         <select class="form-select" id="outlet" aria-label="Floating label select example" name="outlet" required>
-                            <option selected disabled>Pilih outlet</option>
+                            <option selected disabled>Select outlet</option>
                             <?php foreach ($outlet as $o) : ?>
                                 <option value="<?= $o['id']; ?>"><?= $o['nama']; ?></option>
                             <?php endforeach; ?>
@@ -51,24 +51,24 @@ if (isset($_POST['simpan'])) {
                     </div>
                     <div class="form-floating mb-3">
                         <select class="form-select" id="jenis" aria-label="Floating label select example" name="jenis" required>
-                            <option selected disabled>Pilih jenis paket</option>
-                            <option value="kiloan">Kiloan</option>
-                            <option value="selimut">Selimut</option>
+                            <option selected disabled>Select package type</option>
+                            <option value="kiloan">Per Kilo</option>
+                            <option value="selimut">Blanket</option>
                             <option value="bed cover">Bed Cover</option>
-                            <option value="kaos">Kaos</option>
-                            <option value="lain">Lainnya</option>
+                            <option value="kaos">T-Shirt</option>
+                            <option value="lain">Others</option>
                         </select>
-                        <label for="jenis">Jenis Paket</label>
+                        <label for="jenis">Package Type</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="nama" placeholder="" name="nama" required>
-                        <label for="nama">Nama Paket</label>
+                        <label for="nama">Package Name</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="number" class="form-control" id="harga" placeholder="" name="harga" required>
-                        <label for="harga">Harga</label>
+                        <label for="harga">Price</label>
                     </div>
-                    <button type="submit" class="btn btn-primary float-right" name="simpan">Simpan</button>
+                    <button type="submit" class="btn btn-primary float-right" name="simpan">Save</button>
                 </form>
             </div>
         </div>

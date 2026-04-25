@@ -1,5 +1,5 @@
 <?php
-$title = 'Transaksi';
+$title = 'Transaction';
 include '../templates/header.php';
 
 $transaksi = query("SELECT tb_transaksi.*, tb_outlet.id AS outlet_id, tb_outlet.nama AS outlet_nama, tb_member.id AS member_id, tb_member.nama AS member_nama, tb_user.id AS user_id, tb_user.nama AS user_nama FROM tb_transaksi, tb_outlet, tb_member, tb_user WHERE tb_transaksi.id_outlet = tb_outlet.id AND tb_transaksi.id_member = tb_member.id AND tb_transaksi.id_user = tb_user.id");
@@ -10,30 +10,30 @@ $transaksi = query("SELECT tb_transaksi.*, tb_outlet.id AS outlet_id, tb_outlet.
 <div class="container-fluid">
     <?php
     if (isset($_SESSION['inserted'])) {
-        echo '<div class="alert alert-success">Data berhasil ditambahkan!</div>';
+        echo '<div class="alert alert-success">Data added successfully!</div>';
         unset($_SESSION['inserted']);
     } elseif (isset($_SESSION['updated'])) {
-        echo '<div class="alert alert-success">Data berhasil diubah!</div>';
+        echo '<div class="alert alert-success">Data updated successfully!</div>';
         unset($_SESSION['updated']);
     } elseif (isset($_SESSION['deleted'])) {
-        echo '<div class="alert alert-success">Data berhasil dihapus!</div>';
+        echo '<div class="alert alert-success">Data deleted successfully!</div>';
         unset($_SESSION['deleted']);
     } elseif (isset($_SESSION['notDeleted'])) {
-        echo '<div class="alert alert-danger">Data gagal dihapus!</div>';
+        echo '<div class="alert alert-danger">Failed to delete data!</div>';
         unset($_SESSION['notDeleted']);
     }
     ?>
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Transaksi</h1>
-        <a class="btn btn-primary" href="tambah_transaksi.php"><i class="fas fa-plus mr-2"></i>Tambah Transaksi</a>
+        <h1 class="h3 mb-0 text-gray-800">Transaction</h1>
+        <a class="btn btn-primary" href="tambah_transaksi.php"><i class="fas fa-plus mr-2"></i>Add Transaction</a>
     </div>
 
-    <!-- DataTales Example -->
+    <!-- DataTables Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Data Transaksi</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Transaction Data</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -42,36 +42,36 @@ $transaksi = query("SELECT tb_transaksi.*, tb_outlet.id AS outlet_id, tb_outlet.
                         <tr>
                             <th>No.</th>
                             <th>Outlet</th>
-                            <th>Kode Invoice</th>
-                            <th>Nama Member</th>
-                            <th>Tanggal Transaksi</th>
-                            <th>Batas Waktu</th>
-                            <th>Tanggal Bayar</th>
-                            <th>Biaya Tambahan</th>
-                            <th>Diskon</th>
-                            <th>Pajak</th>
+                            <th>Invoice Code</th>
+                            <th>Member Name</th>
+                            <th>Transaction Date</th>
+                            <th>Deadline</th>
+                            <th>Payment Date</th>
+                            <th>Additional Fee</th>
+                            <th>Discount</th>
+                            <th>Tax</th>
                             <th>Status</th>
-                            <th>Dibayar</th>
-                            <th>Petugas</th>
-                            <th>Aksi</th>
+                            <th>Payment</th>
+                            <th>Staff</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>No.</th>
                             <th>Outlet</th>
-                            <th>Kode Invoice</th>
-                            <th>Nama Member</th>
-                            <th>Tanggal Transaksi</th>
-                            <th>Batas Waktu</th>
-                            <th>Tanggal Bayar</th>
-                            <th>Biaya Tambahan</th>
-                            <th>Diskon</th>
-                            <th>Pajak</th>
+                            <th>Invoice Code</th>
+                            <th>Member Name</th>
+                            <th>Transaction Date</th>
+                            <th>Deadline</th>
+                            <th>Payment Date</th>
+                            <th>Additional Fee</th>
+                            <th>Discount</th>
+                            <th>Tax</th>
                             <th>Status</th>
-                            <th>Dibayar</th>
-                            <th>Petugas</th>
-                            <th>Aksi</th>
+                            <th>Payment</th>
+                            <th>Staff</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -88,24 +88,28 @@ $transaksi = query("SELECT tb_transaksi.*, tb_outlet.id AS outlet_id, tb_outlet.
                                 <td>Rp<?= number_format($t['biaya_tambahan'], 0, ',', '.'); ?></td>
                                 <td>Rp<?= number_format($t['diskon'], 0, ',', '.'); ?></td>
                                 <td>Rp<?= number_format($t['pajak'], 0, ',', '.'); ?></td>
-                                <td><?php
+                                <td>
+                                    <?php
                                     if ($t['status'] == 'baru') {
-                                        echo '<span class="badge badge-primary">' . $t['status'] . '</span>';
+                                        echo '<span class="badge badge-primary">New</span>';
                                     } elseif ($t['status'] == 'proses') {
-                                        echo '<span class="badge badge-warning">' . $t['status'] . '</span>';
+                                        echo '<span class="badge badge-warning">In Process</span>';
                                     } elseif ($t['status'] == 'selesai') {
-                                        echo '<span class="badge badge-info">' . $t['status'] . '</span>';
+                                        echo '<span class="badge badge-info">Completed</span>';
                                     } elseif ($t['status'] == 'diambil') {
-                                        echo '<span class="badge badge-success">' . $t['status'] . '</span>';
+                                        echo '<span class="badge badge-success">Picked Up</span>';
                                     }
-                                    ?></td>
-                                <td><?php
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
                                     if ($t['dibayar'] == 'dibayar') {
-                                        echo '<span class="badge badge-success">' . $t['dibayar'] . '</span>';
+                                        echo '<span class="badge badge-success">Paid</span>';
                                     } elseif ($t['dibayar'] == 'belum dibayar') {
-                                        echo '<span class="badge badge-danger">' . $t['dibayar'] . '</span>';
+                                        echo '<span class="badge badge-danger">Unpaid</span>';
                                     }
-                                    ?></td>
+                                    ?>
+                                </td>
                                 <td><?= $t['user_nama']; ?></td>
                                 <td>
                                     <a class="btn btn-sm btn-info" data-toggle="modal" data-target="#detailModal<?= $t['id']; ?>" id="tombolModalDetail"><i class="far fa-file-alt"></i></a>
@@ -125,27 +129,27 @@ $transaksi = query("SELECT tb_transaksi.*, tb_outlet.id AS outlet_id, tb_outlet.
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="detailModalLabel">Detail Transaksi</h5>
+                                                <h5 class="modal-title" id="detailModalLabel">Transaction Details</h5>
                                                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">×</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="d-flex align-items-center justify-content-between">
-                                                    <p>Nama Paket :</p>
+                                                    <p>Package Name:</p>
                                                     <p><?= $d['nama_paket']; ?></p>
                                                 </div>
                                                 <div class="d-flex align-items-center justify-content-between">
-                                                    <p>Jumlah :</p>
+                                                    <p>Quantity:</p>
                                                     <p><?= $d['qty']; ?></p>
                                                 </div>
                                                 <div class="d-flex align-items-center justify-content-between">
-                                                    <p>Harga :</p>
+                                                    <p>Price:</p>
                                                     <p>Rp<?= number_format($harga, 0, ',', '.'); ?></p>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Tutup</button>
+                                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                                             </div>
                                         </div>
                                     </div>
@@ -162,20 +166,20 @@ $transaksi = query("SELECT tb_transaksi.*, tb_outlet.id AS outlet_id, tb_outlet.
 </div>
 <!-- /.container-fluid -->
 
-<!-- Hapus Modal-->
+<!-- Delete Modal-->
 <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="hapusModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="hapusModalLabel">Yakin ingin menghapus data ini?</h5>
+                <h5 class="modal-title" id="hapusModalLabel">Are you sure you want to delete this data?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Klik tombol hapus untuk menghapus.</div>
+            <div class="modal-body">Click the delete button to delete this data.</div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                <a class="btn btn-danger" href="" id="tombolHapus">Hapus</a>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-danger" href="" id="tombolHapus">Delete</a>
             </div>
         </div>
     </div>

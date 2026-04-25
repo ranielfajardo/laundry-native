@@ -25,14 +25,14 @@ $transaksi = query("SELECT * FROM tb_transaksi ORDER BY id DESC");
     <!-- Content Row -->
     <div class="row">
 
-        <!-- Baru Card Example -->
+        <!-- New Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Baru</div>
+                                New</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jumlahBaru; ?></div>
                         </div>
                         <div class="col-auto">
@@ -43,14 +43,14 @@ $transaksi = query("SELECT * FROM tb_transaksi ORDER BY id DESC");
             </div>
         </div>
 
-        <!-- Proses Card Example -->
+        <!-- In Process Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Proses</div>
+                                In Process</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jumlahProses; ?></div>
                         </div>
                         <div class="col-auto">
@@ -61,14 +61,14 @@ $transaksi = query("SELECT * FROM tb_transaksi ORDER BY id DESC");
             </div>
         </div>
 
-        <!-- Selesai Card Example -->
+        <!-- Completed Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                Selesai</div>
+                                Completed</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jumlahSelesai; ?></div>
                         </div>
                         <div class="col-auto">
@@ -79,14 +79,14 @@ $transaksi = query("SELECT * FROM tb_transaksi ORDER BY id DESC");
             </div>
         </div>
 
-        <!-- Diambil Card Example -->
+        <!-- Picked Up Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Diambil</div>
+                                Picked Up</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jumlahDiambil; ?></div>
                         </div>
                         <div class="col-auto">
@@ -98,10 +98,10 @@ $transaksi = query("SELECT * FROM tb_transaksi ORDER BY id DESC");
         </div>
     </div>
 
-    <!-- DataTales Example -->
+    <!-- DataTables Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Riwayat Transaksi</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Transaction History</h6>
         </div>
         <div class="card-body">
             <?php foreach ($transaksi as $t) : ?>
@@ -112,20 +112,20 @@ $transaksi = query("SELECT * FROM tb_transaksi ORDER BY id DESC");
                     </div>
                     <?php
                     if ($t['status'] == 'baru') {
-                        echo '<span class="badge badge-primary">' . $t['status'] . '</span>';
+                        echo '<span class="badge badge-primary">New</span>';
                     } elseif ($t['status'] == 'proses') {
-                        echo '<span class="badge badge-warning">' . $t['status'] . '</span>';
+                        echo '<span class="badge badge-warning">In Process</span>';
                     } elseif ($t['status'] == 'selesai') {
-                        echo '<span class="badge badge-info">' . $t['status'] . '</span>';
+                        echo '<span class="badge badge-info">Completed</span>';
                     } elseif ($t['status'] == 'diambil') {
-                        echo '<span class="badge badge-success">' . $t['status'] . '</span>';
+                        echo '<span class="badge badge-success">Picked Up</span>';
                     }
                     ?>
                     <?php
                     if ($t['dibayar'] == 'dibayar') {
-                        echo '<span class="badge badge-success">' . $t['dibayar'] . '</span>';
+                        echo '<span class="badge badge-success">Paid</span>';
                     } elseif ($t['dibayar'] == 'belum dibayar') {
-                        echo '<span class="badge badge-danger">' . $t['dibayar'] . '</span>';
+                        echo '<span class="badge badge-danger">Unpaid</span>';
                     }
                     ?>
                 </div>

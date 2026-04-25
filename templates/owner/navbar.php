@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion <?= ($title == 'Transaksi') ? 'toggled' : ''; ?>" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion <?= ($title == 'Transaction') ? 'toggled' : ''; ?>" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -24,14 +24,14 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Transaksi
+        Transaction
     </div>
 
-    <!-- Nav Item - Laporan -->
-    <li class="nav-item <?= ($title == 'Laporan') ? 'active' : ''; ?>">
+    <!-- Nav Item - Report -->
+    <li class="nav-item <?= ($title == 'Report') ? 'active' : ''; ?>">
         <a class="nav-link" href="laporan.php">
             <i class="far fa-fw fa-file"></i>
-            <span>Laporan</span></a>
+            <span>Report</span></a>
     </li>
 
     <!-- Divider -->
@@ -47,7 +47,7 @@
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
-    <!-- Sidebar Toggler (Sidebar) -->
+    <!-- Sidebar Toggler -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
@@ -64,7 +64,7 @@
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-            <!-- Sidebar Toggle (Topbar) -->
+            <!-- Sidebar Toggle -->
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                 <i class="fa fa-bars"></i>
             </button>
@@ -72,11 +72,12 @@
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
 
-                <!-- Nav Item - User Information -->
+                <!-- User Information -->
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['nama']; ?></span>
                     </a>
+
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
