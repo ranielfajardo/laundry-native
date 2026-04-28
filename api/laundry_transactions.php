@@ -2,7 +2,7 @@
 
 require_once "db.php";
 
-$query = "SELECT * FROM tb_transaksi ORDER BY id_transaksi DESC";
+$query = "SELECT * FROM tb_transaksi ORDER BY id DESC";
 $result = mysqli_query($conn, $query);
 
 if (!$result) {
