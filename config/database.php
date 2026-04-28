@@ -1,10 +1,12 @@
 <?php
-$hostname = 'localhost';
-$username = 'root';
-$password = '';
-$db_name = 'laundry';
 
-$conn = mysqli_connect($hostname, $username, $password, $db_name);
+$host = "mysql";
+$user = "root";
+$pass = "root";
+$db = "laundry";
 
-if (!$conn)
-    die('Koneksi Gagal! ' . mysqli_connect_error());
+$conn = mysqli_connect($host, $user, $pass, $db);
+
+if (!$conn) {
+    die("Database connection failed: " . mysqli_connect_error());
+}
